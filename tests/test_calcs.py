@@ -58,7 +58,36 @@ def test_days_in_month_range():
     assert days_in_month_range_inclusive(Month.JANUARY, Month.DECEMBER, 2001) == 365
 
 
-def test_days_per_month():
+data_days_per_month = [
+    (Month.JANUARY, 1999, 31),
+    (Month.FEBRUARY, 1999, 28),
+    (Month.MARCH, 1999, 31),
+    (Month.APRIL, 1999, 30),
+    (Month.MAY, 1999, 31),
+    (Month.JUNE, 1999, 30),
+    (Month.JULY, 1999, 31),
+    (Month.AUGUST, 1999, 31),
+    (Month.SEPTEMBER, 1999, 30),
+    (Month.OCTOBER, 1999, 31),
+    (Month.NOVEMBER, 1999, 30),
+    (Month.DECEMBER, 1999, 31),
+    (Month.JANUARY, 2000, 31),
+    (Month.FEBRUARY, 2000, 29),
+    (Month.MARCH, 2000, 31),
+    (Month.APRIL, 2000, 30),
+    (Month.MAY, 2000, 31),
+    (Month.JUNE, 2000, 30),
+    (Month.JULY, 2000, 31),
+    (Month.AUGUST, 2000, 31),
+    (Month.SEPTEMBER, 2000, 30),
+    (Month.OCTOBER, 2000, 31),
+    (Month.NOVEMBER, 2000, 30),
+    (Month.DECEMBER, 2000, 31),
+]
+
+
+@pytest.mark.parametrize("month, year, expected", data_days_per_month)
+def test_days_per_month(month, year, expected):
     """
     Thirty days hath September,
     April, June, and November,
@@ -67,13 +96,11 @@ def test_days_per_month():
     The leap year, which comes once in four,
     Gives February one day more.
     """
-    assert days_per_month(Month.SEPTEMBER, 2000) == 30
-    assert days_per_month(Month.APRIL, 2000) == 30
-    assert days_per_month(Month.JUNE, 2000) == 30
-    assert days_per_month(Month.NOVEMBER, 2000) == 30
-    assert days_per_month(Month.FEBRUARY, 1999) == 28
-    assert days_per_month(Month.FEBRUARY, 2000) == 29
+    assert days_per_month(month, year) == expected
 
 
 def test_days_in_fully_elapsed_year_range():
+    assert days_in_fully_elapsed_year_range(1998, 2000) == 365
+    assert days_in_fully_elapsed_year_range(1999, 2000) == 0
     assert days_in_fully_elapsed_year_range(1999, 2001) == 366
+    assert days_in_fully_elapsed_year_range(1999, 2002) == 731
