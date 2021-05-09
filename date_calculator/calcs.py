@@ -1,4 +1,10 @@
-from date_calculator.constants import Month, DAYS_LEAP_YEAR, DAYS_NON_LEAP_YEAR
+from date_calculator.constants import (
+    Month,
+    DAYS_LEAP_YEAR,
+    DAYS_NON_LEAP_YEAR,
+    YEAR_LOWER_BOUND,
+    YEAR_UPPER_BOUND,
+)
 
 
 def is_exactly_divisible(dividend: int, divisor: int) -> bool:
@@ -33,6 +39,11 @@ def days_in_month_range_inclusive(start_month: Month, end_month: Month, year: in
 
 
 def days_in_fully_elapsed_year_range(start_year: int, end_year: int) -> int:
+    """Naive implementation. Replace this with something better to handle a larger range."""
+    if start_year < YEAR_LOWER_BOUND or end_year < YEAR_LOWER_BOUND:
+        raise ValueError("Year lower bound exceeded: {} {}".format(start_year, end_year))
+    if start_year > YEAR_UPPER_BOUND or end_year > YEAR_UPPER_BOUND:
+        raise ValueError("Year upper bound exceeded: {} {}".format(start_year, end_year))
     days = 0
     for year in range(start_year + 1, end_year):
         days += DAYS_LEAP_YEAR if is_leap_year(year) else DAYS_NON_LEAP_YEAR
