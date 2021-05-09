@@ -28,7 +28,7 @@ class Date:
             - self.days_till_end_of_month()
         )
 
-    def days_elapsed_to(self, other) -> int:
+    def days_elapsed_to(self, other: "Date") -> int:
         start_date, end_date = sorted((self, other))
 
         if start_date.is_same_year_as(end_date):
@@ -46,17 +46,17 @@ class Date:
             + end_date.days_since_start_of_year()
         )
 
-    def days_fully_elapsed_to(self, other) -> int:
+    def days_fully_elapsed_to(self, other: "Date") -> int:
         return 0 if self == other else self.days_elapsed_to(other) - 1
 
-    def is_same_year_as(self, other) -> bool:
+    def is_same_year_as(self, other: "Date") -> bool:
         return self.year == other.year
 
-    def is_same_month_as(self, other) -> bool:
+    def is_same_month_as(self, other: "Date") -> bool:
         return self.month == other.month
 
     @classmethod
-    def from_string(cls, string: str):
+    def from_string(cls, string: str) -> "Date":
         # TODO: regex and exception handling
         tokens = list(map(int, string.split("/")))
         return cls(year=tokens[2], month=Month(tokens[1]), day=tokens[0])

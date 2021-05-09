@@ -1,8 +1,8 @@
 from date_calculator.constants import Month, DAYS_LEAP_YEAR, DAYS_NON_LEAP_YEAR
 
 
-def is_exactly_divisible(numerator: int, denominator: int) -> bool:
-    return numerator % denominator == 0
+def is_exactly_divisible(dividend: int, divisor: int) -> bool:
+    return dividend % divisor == 0
 
 
 def is_centurial_year(year: int) -> bool:
