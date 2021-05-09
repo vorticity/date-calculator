@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from functools import total_ordering
 
 from date_calculator.calcs import (
     days_per_month,
@@ -8,6 +9,7 @@ from date_calculator.calcs import (
 from date_calculator.constants import Month, YEAR_LOWER_BOUND
 
 
+@total_ordering
 @dataclass(frozen=True, eq=True)
 class Date:
     year: int = YEAR_LOWER_BOUND
@@ -28,6 +30,7 @@ class Date:
 
     def days_elapsed_to(self, other) -> int:
         start_date, end_date = sorted((self, other))
+        print(start_date, end_date)
 
         if start_date.is_same_year_as(end_date):
             if start_date.is_same_month_as(end_date):
@@ -61,10 +64,4 @@ class Date:
         return cls(year=tokens[2], month=Month(tokens[1]), day=tokens[0])
 
     def __lt__(self, other) -> bool:
-        if self.year < other.year:
-            return True
-        if self.month.value < other.month.value:
-            return True
-        if self.day < other.day:
-            return True
-        return False
+        return (self.year, self.month.value, self.day) < (other.year, other.month.value, other.day)

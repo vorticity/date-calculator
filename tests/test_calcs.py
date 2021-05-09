@@ -1,6 +1,7 @@
 import pytest
 
 from date_calculator.calcs import (
+    days_in_fully_elapsed_year_range,
     days_in_month_range_inclusive,
     days_per_month,
     is_leap_year,
@@ -72,3 +73,7 @@ def test_days_per_month():
     assert days_per_month(Month.NOVEMBER, 2000) == 30
     assert days_per_month(Month.FEBRUARY, 1999) == 28
     assert days_per_month(Month.FEBRUARY, 2000) == 29
+
+
+def test_days_in_fully_elapsed_year_range():
+    assert days_in_fully_elapsed_year_range(1999, 2001) == 366

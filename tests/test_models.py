@@ -48,3 +48,13 @@ def test_date_from_string():
     assert date.year == 2021
     assert date.month == Month.MAY
     assert date.day == 8
+
+
+def test_days_till_end_of_year():
+    assert Date.from_string("31/12/1999").days_till_end_of_year() == 0
+    assert Date.from_string("01/01/2000").days_till_end_of_year() == 365
+
+
+def test_days_since_start_of_year():
+    assert Date.from_string("31/12/2001").days_since_start_of_year() == 365
+    assert Date.from_string("01/01/2001").days_since_start_of_year() == 1
