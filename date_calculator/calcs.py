@@ -6,16 +6,13 @@ def is_exactly_divisible(numerator: int, denominator: int) -> bool:
 
 
 def is_centurial_year(year: int) -> bool:
-    return True if is_exactly_divisible(year, 100) else False
+    return is_exactly_divisible(year, 100)
 
 
 def is_leap_year(year: int) -> bool:
     if is_centurial_year(year):
-        if is_exactly_divisible(year, 400):
-            return True
-        else:
-            return False
-    return True if is_exactly_divisible(year, 4) else False
+        return is_exactly_divisible(year, 400)
+    return is_exactly_divisible(year, 4)
 
 
 def days_per_month(month: Month, year: int) -> int:
@@ -24,8 +21,7 @@ def days_per_month(month: Month, year: int) -> int:
     if month == Month.FEBRUARY:
         if is_leap_year(year):
             return 29
-        else:
-            return 28
+        return 28
     return 31
 
 

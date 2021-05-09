@@ -35,12 +35,11 @@ class Date:
         if start_date.is_same_year_as(end_date):
             if start_date.is_same_month_as(end_date):
                 return end_date.day - start_date.day
-            else:
-                return (
-                    days_in_month_range_inclusive(start_date.month, end_date.month, start_date.year)
-                    - start_date.day
-                    - end_date.days_till_end_of_month()
-                )
+            return (
+                days_in_month_range_inclusive(start_date.month, end_date.month, start_date.year)
+                - start_date.day
+                - end_date.days_till_end_of_month()
+            )
 
         return (
             start_date.days_till_end_of_year()
