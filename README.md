@@ -18,7 +18,8 @@ pytest
 
 ## Usage
 A command line interface is provided for your convenience: [date-calculator-cli](https://github.com/vorticity/date-calculator-cli).
-Should you with to use the library in your own code, please refer the example below:
+
+Should you wish to use the date_calculator library and Date class in your own code, please refer the example below:
 ```python
 
 >>>from date_calculator.constants import Month
