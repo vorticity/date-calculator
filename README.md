@@ -1,5 +1,5 @@
 # date-calculator
-Technical exercise: TDD implementation of a Date class written from scratch, without using datetime.
+Technical exercise: TDD implementation of a Date class written from scratch, without depending on datetime or any third party libraries.
 
 As used by the [date-calculator-cli](https://github.com/vorticity/date-calculator-cli) command line interface.
 
