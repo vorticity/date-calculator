@@ -5,7 +5,7 @@ from date_calculator.calcs import (
     days_in_month_range_inclusive,
     days_in_fully_elapsed_year_range,
 )
-from date_calculator.contants import Month, YEAR_LOWER_BOUND
+from date_calculator.constants import Month, YEAR_LOWER_BOUND
 
 
 @dataclass(frozen=True, eq=True)

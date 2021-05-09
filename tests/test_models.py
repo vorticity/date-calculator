@@ -1,10 +1,10 @@
 import pytest
 
-from date_calculator.contants import Month
+from date_calculator.constants import Month
 from date_calculator.models import Date
 
 
-data_days_fully_elapsed_between = [
+data_days_fully_elapsed_to = [
     ("03/08/2018", "03/08/2018", 0),
     ("03/08/2018", "04/08/2018", 0),
     ("01/01/2000", "03/01/2000", 1),
@@ -15,8 +15,8 @@ data_days_fully_elapsed_between = [
 ]
 
 
-@pytest.mark.parametrize("date1, date2, expected", data_days_fully_elapsed_between)
-def test_days_fully_elapsed_between(date1, date2, expected):
+@pytest.mark.parametrize("date1, date2, expected", data_days_fully_elapsed_to)
+def test_days_fully_elapsed_to(date1, date2, expected):
     assert Date.from_string(date1).days_fully_elapsed_to(Date.from_string(date2)) == expected
 
 

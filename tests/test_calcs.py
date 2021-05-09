@@ -5,7 +5,7 @@ from date_calculator.calcs import (
     days_per_month,
     is_leap_year,
 )
-from date_calculator.contants import Month
+from date_calculator.constants import Month
 
 
 data_is_leap_year = [

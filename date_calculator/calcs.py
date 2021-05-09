@@ -1,4 +1,4 @@
-from date_calculator.contants import Month, DAYS_LEAP_YEAR, DAYS_NON_LEAP_YEAR
+from date_calculator.constants import Month, DAYS_LEAP_YEAR, DAYS_NON_LEAP_YEAR
 
 
 def is_exactly_divisible(numerator: int, denominator: int) -> bool:
