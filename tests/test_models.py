@@ -50,6 +50,20 @@ def test_date_from_string():
     assert date.day == 8
 
 
+def test_year_is_out_of_range():
+    with pytest.raises(ValueError, match=".*Year out of range: .*"):
+        date = Date.from_string("08/05/1900")
+    with pytest.raises(ValueError, match=".*Year out of range: .*"):
+        date = Date.from_string("08/05/3000")
+
+
+def test_day_is_out_of_range():
+    with pytest.raises(ValueError, match=".*Day out of range: .*"):
+        date = Date.from_string("00/05/2021")
+    with pytest.raises(ValueError, match=".*Day out of range: .*"):
+        date = Date.from_string("32/05/2021")
+
+
 def test_days_till_end_of_year():
     assert Date.from_string("31/12/1999").days_till_end_of_year() == 0
     assert Date.from_string("01/01/2000").days_till_end_of_year() == 365

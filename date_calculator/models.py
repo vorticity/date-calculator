@@ -6,7 +6,7 @@ from date_calculator.calcs import (
     days_in_month_range_inclusive,
     days_in_fully_elapsed_year_range,
 )
-from date_calculator.constants import Month, YEAR_LOWER_BOUND
+from date_calculator.constants import Month, YEAR_LOWER_BOUND, YEAR_UPPER_BOUND
 
 
 @total_ordering
@@ -57,8 +57,12 @@ class Date:
 
     @classmethod
     def from_string(cls, string: str) -> "Date":
-        # TODO: regex and exception handling
+        """Expected date string format is: DD/MM/YYYY"""
         tokens = list(map(int, string.split("/")))
+        if tokens[2] < YEAR_LOWER_BOUND or tokens[2] > YEAR_UPPER_BOUND:
+            raise ValueError("Year out of range: {}".format(tokens[2]))
+        if tokens[0] < 1 or tokens[0] > days_per_month(Month(tokens[1]), tokens[2]):
+            raise ValueError("Day out of range: {}".format(tokens[0]))
         return cls(year=tokens[2], month=Month(tokens[1]), day=tokens[0])
 
     def __lt__(self, other) -> bool:
