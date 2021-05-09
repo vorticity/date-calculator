@@ -30,7 +30,6 @@ class Date:
 
     def days_elapsed_to(self, other) -> int:
         start_date, end_date = sorted((self, other))
-        print(start_date, end_date)
 
         if start_date.is_same_year_as(end_date):
             if start_date.is_same_month_as(end_date):
