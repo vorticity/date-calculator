@@ -16,6 +16,20 @@ poetry shell
 pytest
 ```
 
+## Usage
+A command line interface is provided for your convenience: [date-calculator-cli](https://github.com/vorticity/date-calculator-cli).
+Should you with to use the library in your own code, please refer the example below:
+```python
+
+>>>from date_calculator.constants import Month
+>>>from date_calculator.models import Date
+>>>start = Date(year=2021, month=Month.MAY, day=7)
+>>>end = Date(year=2021, month=Month.MAY, day=9)
+>>>print(start.days_fully_elapsed_to(end))
+1
+>>>
+```
+
 ## References
 
 * https://en.wikipedia.org/wiki/Thirty_Days_Hath_September
