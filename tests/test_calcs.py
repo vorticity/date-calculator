@@ -5,6 +5,7 @@ from date_calculator.calcs import (
     days_in_month_range_inclusive,
     days_per_month,
     is_leap_year,
+    leap_years_in_range
 )
 from date_calculator.constants import Month
 
@@ -104,3 +105,17 @@ def test_days_in_fully_elapsed_year_range():
     assert days_in_fully_elapsed_year_range(1999, 2000) == 0
     assert days_in_fully_elapsed_year_range(1999, 2001) == 366
     assert days_in_fully_elapsed_year_range(1999, 2002) == 731
+
+
+def test_leap_years_in_range():
+    assert leap_years_in_range(2000, 2000) == 1
+    assert leap_years_in_range(2000, 2001) == 1
+    assert leap_years_in_range(2001, 2001) == 0
+    assert leap_years_in_range(2001, 2002) == 0
+    assert leap_years_in_range(2001, 2003) == 0
+    assert leap_years_in_range(2001, 2004) == 1
+    assert leap_years_in_range(2000, 2004) == 2
+    assert leap_years_in_range(2000, 2008) == 3
+    assert leap_years_in_range(2000, 2009) == 3
+    assert leap_years_in_range(2001, 2009) == 2
+    assert leap_years_in_range(2001, 2010) == 2
