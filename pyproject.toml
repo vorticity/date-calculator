@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "date-calculator"
-version = "1.0.0"
+version = "1.1.0"
 description = ""
 authors = ["Edwin Erdmanis <edwin.erdmanis@gmail.com>"]
 

@@ -5,7 +5,8 @@ from date_calculator.calcs import (
     days_in_month_range_inclusive,
     days_per_month,
     is_leap_year,
-    leap_years_in_range
+    leap_years_in_range,
+    offset_to_first_multiple_of,
 )
 from date_calculator.constants import Month
 
@@ -100,22 +101,55 @@ def test_days_per_month(month, year, expected):
     assert days_per_month(month, year) == expected
 
 
-def test_days_in_fully_elapsed_year_range():
-    assert days_in_fully_elapsed_year_range(1998, 2000) == 365
-    assert days_in_fully_elapsed_year_range(1999, 2000) == 0
-    assert days_in_fully_elapsed_year_range(1999, 2001) == 366
-    assert days_in_fully_elapsed_year_range(1999, 2002) == 731
+data_days_in_fully_elapsed_year_range = [
+    (1998, 2000, 365),
+    (1999, 2000, 0),
+    (1999, 2001, 366),
+    (1999, 2002, 731),
+    (1901, 1913, 4018),
+]
 
 
-def test_leap_years_in_range():
-    assert leap_years_in_range(2000, 2000) == 1
-    assert leap_years_in_range(2000, 2001) == 1
-    assert leap_years_in_range(2001, 2001) == 0
-    assert leap_years_in_range(2001, 2002) == 0
-    assert leap_years_in_range(2001, 2003) == 0
-    assert leap_years_in_range(2001, 2004) == 1
-    assert leap_years_in_range(2000, 2004) == 2
-    assert leap_years_in_range(2000, 2008) == 3
-    assert leap_years_in_range(2000, 2009) == 3
-    assert leap_years_in_range(2001, 2009) == 2
-    assert leap_years_in_range(2001, 2010) == 2
+@pytest.mark.parametrize("start_year, end_year, expected", data_days_in_fully_elapsed_year_range)
+def test_days_in_fully_elapsed_year_range(start_year, end_year, expected):
+    assert days_in_fully_elapsed_year_range(start_year, end_year) == expected
+
+
+data_first_leap_year_offset = [
+    (2000, 4, 0),
+    (2001, 4, 3),
+    (2002, 4, 2),
+    (2003, 4, 1),
+    (2004, 4, 0),
+    (1990, 100, 10),
+    (1900, 100, 0),
+    (2001, 100, 99),
+    (1600, 400, 0),
+    (1601, 400, 399),
+]
+
+
+@pytest.mark.parametrize("year, multiple, expected", data_first_leap_year_offset)
+def test_offset_to_first_multiple_of(year, multiple, expected):
+    assert offset_to_first_multiple_of(year, multiple) == expected
+
+
+data_leap_years_in_range = [
+    (2000, 2000, 1),
+    (2000, 2001, 1),
+    (2001, 2001, 0),
+    (2001, 2002, 0),
+    (2001, 2003, 0),
+    (2001, 2004, 1),
+    (2000, 2004, 2),
+    (2000, 2008, 3),
+    (2000, 2009, 3),
+    (2001, 2009, 2),
+    (2001, 2010, 2),
+    (1901, 2999, 267),
+]
+
+
+@pytest.mark.parametrize("start_year, end_year, expected", data_leap_years_in_range)
+def test_leap_years_in_range(start_year, end_year, expected):
+    assert leap_years_in_range(start_year, end_year) == expected
